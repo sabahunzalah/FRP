@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from "react";
 import {
   Paper,
@@ -19,23 +18,29 @@ import {
 import Cropper from "react-easy-crop";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../../FirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
-const courses = ["Web and App Development", "Flutter"];
+const courses = [
+  "Web and App Development Hybrid",
+  "Flutter",
+  "Data science",
+  "Front End",
+  "Backend Development",
+  "Mobile Native",
+];
 
 const CreateStudent = () => {
-
-  const [registerUser,setRegisterUser] = useState({
-    userName : "",
-    fatherName : "",
-    email:"",
-    phone:"",
-    address:"",
-    dob:"",
-    gender:"",
-    course:"",
-
-
-  })
+  const [registerUser, setRegisterUser] = useState({
+    userName: "",
+    fatherName: "",
+    email: "",
+    phone: "",
+    address: "",
+    dob: "",
+    gender: "",
+    course: "",
+  });
+  const navigate = useNavigate();
   const [selectedCourse, setSelectedCourse] = useState("");
   const [dob, setDob] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -56,7 +61,7 @@ const CreateStudent = () => {
       reader.readAsDataURL(file);
       reader.onload = () => {
         setImageSrc(reader.result);
-        setOpenCropModal(true); 
+        setOpenCropModal(true);
       };
     }
   };
@@ -64,17 +69,21 @@ const CreateStudent = () => {
   const handleCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     console.log(croppedArea, croppedAreaPixels);
   }, []);
-const submitUser =async ()=>{
-  try {
-    const docRef = await addDoc(collection(db, "students"),registerUser);
-    console.log("Document: ", docRef);
-    console.log("Document written with ID: ", docRef.id);
-  } catch (e) {
-    console.error("Error adding document: ", e);
-  }
-}
+  const submitUser = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "students"), registerUser);
+      console.log("Document: ", docRef);
+      console.log("Document written with ID: ", docRef.id);
+      navigate("/dashboard/studentList");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
   return (
-    <Paper elevation={20} sx={{ padding: 4, maxWidth: "800px", margin: "auto" }}>
+    <Paper
+      elevation={20}
+      sx={{ padding: 4, maxWidth: "800px", margin: "auto" }}
+    >
       <FormControl fullWidth>
         <Typography sx={{ marginBottom: 2 }} variant="h4" align="center">
           Student Registration Form
@@ -84,71 +93,90 @@ const submitUser =async ()=>{
           {/* Full Name */}
           <Grid item xs={12} sm={6}>
             <FormLabel>Full Name</FormLabel>
-            <TextField fullWidth type="text" onChange={(e)=>{
-              setRegisterUser({...registerUser,userName:e.target.value})
-            }} />
+            <TextField
+              fullWidth
+              type="text"
+              onChange={(e) => {
+                setRegisterUser({ ...registerUser, userName: e.target.value });
+              }}
+            />
           </Grid>
 
           {/* Father's Name */}
           <Grid item xs={12} sm={6}>
             <FormLabel>Father Name</FormLabel>
-            <TextField fullWidth type="text"  onChange={(e)=>{
-              setRegisterUser({...registerUser,fatherName:e.target.value})
-            }}/>
+            <TextField
+              fullWidth
+              type="text"
+              onChange={(e) => {
+                setRegisterUser({
+                  ...registerUser,
+                  fatherName: e.target.value,
+                });
+              }}
+            />
           </Grid>
 
           {/* Email */}
           <Grid item xs={12} sm={6}>
             <FormLabel>Email</FormLabel>
-            <TextField fullWidth type="email" onChange={(e)=>{
-              setRegisterUser({...registerUser,email:e.target.value})
-            }} />
+            <TextField
+              fullWidth
+              type="email"
+              onChange={(e) => {
+                setRegisterUser({ ...registerUser, email: e.target.value });
+              }}
+            />
           </Grid>
 
           {/* Phone */}
           <Grid item xs={12} sm={6}>
             <FormLabel>Phone</FormLabel>
-            <TextField fullWidth type="tel" onChange={(e)=>{
-              setRegisterUser({...registerUser,phone:e.target.value})
-            }} />
+            <TextField
+              fullWidth
+              type="tel"
+              onChange={(e) => {
+                setRegisterUser({ ...registerUser, phone: e.target.value });
+              }}
+            />
           </Grid>
 
           {/* Address */}
           <Grid item xs={12}>
             <FormLabel>Address</FormLabel>
-            <TextField fullWidth  onChange={(e)=>{
-              setRegisterUser({...registerUser,address:e.target.value})
-            }}/>
+            <TextField
+              fullWidth
+              onChange={(e) => {
+                setRegisterUser({ ...registerUser, address: e.target.value });
+              }}
+            />
           </Grid>
 
           {/* Date of Birth */}
           <Grid item xs={12} sm={6}>
             <FormLabel>Date of Birth</FormLabel>
-            <TextField 
-              fullWidth 
-              type="date" 
-              value={dob} 
-              onChange={(e) => {setDob(e.target.value)
-                setRegisterUser({...registerUser,dob:e.target.value})}}
-              
-              InputLabelProps={{ shrink: true }} 
+            <TextField
+              fullWidth
+              type="date"
+              value={dob}
+              onChange={(e) => {
+                setDob(e.target.value);
+                setRegisterUser({ ...registerUser, dob: e.target.value });
+              }}
+              InputLabelProps={{ shrink: true }}
             />
           </Grid>
 
-          
-
           {/* Course Selection */}
           <Grid item xs={12} sm={6}>
-            <FormLabel>Select Course</FormLabel>
+            <FormLabel> Course you can teach</FormLabel>
             <Select
               fullWidth
-              value={selectedCourse}
-              onChange={(e)=>{
-               { handleCourseChange}
-                setRegisterUser({...registerUser,course:e.target.value})}
-
-
-              }
+              value={selectedCourse} // Ensure value is set properly
+              onChange={(e) => {
+                setSelectedCourse(e.target.value); // Update state
+                setRegisterUser({ ...registerUser, course: e.target.value }); // Update object
+              }}
             >
               {courses.map((course) => (
                 <MenuItem key={course} value={course}>
@@ -160,11 +188,18 @@ const submitUser =async ()=>{
           {/* Gender */}
           <Grid item xs={12} sm={6}>
             <FormLabel>Gender</FormLabel>
-            <RadioGroup row name="gender" onChange={(e)=>{
-              setRegisterUser({...registerUser,gender:e.target.value})
-
-            }}>
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
+            <RadioGroup
+              row
+              name="gender"
+              onChange={(e) => {
+                setRegisterUser({ ...registerUser, gender: e.target.value });
+              }}
+            >
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Female"
+              />
               <FormControlLabel value="male" control={<Radio />} label="Male" />
             </RadioGroup>
           </Grid>
@@ -173,12 +208,24 @@ const submitUser =async ()=>{
           <Grid item xs={12} sm={6}>
             <FormLabel>Upload Picture</FormLabel>
             <Box display="flex" alignItems="center" gap={2}>
-              <Button variant="contained" component="label" sx={{width:"100%", backgroundColor:" #007763"}}>
+              <Button
+                variant="contained"
+                component="label"
+                sx={{ width: "100%", backgroundColor: " #007763" }}
+              >
                 Browse
-                <input type="file" hidden accept="image/*" onChange={handleFileChange} />
+                <input
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleFileChange}
+                />
               </Button>
               {selectedFile && (
-                <Button variant="outlined" onClick={() => setOpenCropModal(true)}>
+                <Button
+                  variant="outlined"
+                  onClick={() => setOpenCropModal(true)}
+                >
                   Crop
                 </Button>
               )}
@@ -197,13 +244,23 @@ const submitUser =async ()=>{
                   borderRadius: "8px",
                 }}
               >
-                <img src={imageSrc} alt="Preview" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img
+                  src={imageSrc}
+                  alt="Preview"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </Box>
             )}
           </Grid>
           <Grid item xs={12} sm={12}>
-        <Button sx={{width:"100%", backgroundColor:" #007763"}} variant="contained" onClick={submitUser}>Submit</Button>
-      </Grid>
+            <Button
+              sx={{ width: "100%", backgroundColor: " #007763" }}
+              variant="contained"
+              onClick={submitUser}
+            >
+              Submit
+            </Button>
+          </Grid>
         </Grid>
       </FormControl>
 
@@ -253,10 +310,8 @@ const submitUser =async ()=>{
           </Box>
         </Box>
       </Modal>
-      
     </Paper>
   );
 };
 
 export default CreateStudent;
-

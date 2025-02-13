@@ -18,8 +18,9 @@ import {
 import Cropper from "react-easy-crop";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../../FirebaseConfig";
+import { useNavigate } from "react-router-dom";
 
-const courses = ["Web and App Development", "Flutter"];
+const courses = ["Web and App Development Hybrid", "Flutter","Data science", "Front End","Backend Development","Mobile Native"];
 
 const CreateTeacher = () => {
   const [registerUser, setRegisterUser] = useState({
@@ -56,6 +57,7 @@ const CreateTeacher = () => {
       };
     }
   };
+  const navigate = useNavigate()
 
   const handleCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     console.log(croppedArea, croppedAreaPixels);
@@ -65,6 +67,7 @@ const CreateTeacher = () => {
       const docRef = await addDoc(collection(db, "Teachers"), registerUser);
       console.log("Document: ", docRef);
       console.log("Document written with ID: ", docRef.id);
+      navigate('/dashboard/teacherList')
     } catch (e) {
       console.error("Error adding document: ", e);
     }
