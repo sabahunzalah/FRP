@@ -4,17 +4,24 @@ import Home from './screens/Home/Home'
 import Login from './screens/Login/Login'
 import SignUp from './screens/Signup/SignUp'
 import LmsDashboard from './screens/Dashboard/Dashboard'
-import ResponsiveDrawer from './screens/Dashboard/Dashboard'
 import { ToastContainer } from 'react-toastify'
+import ProtectedRoute from './components/ProtectedRoute'
+import AuthRoute from './components/AuthRoute'
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<ProtectedRoute/>}>
+        <Route path="/dashboard/*" element={<LmsDashboard />} />
+        </Route>
+        <Route element={<AuthRoute/>}>
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<SignUp />} />
-        <Route path="/dashboard/*" element={<LmsDashboard />} />
+
+        </Route>
+        <Route path="/" element={<Home />} />
+      
       </Routes>
       <ToastContainer
 position="top-center"

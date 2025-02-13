@@ -1,9 +1,17 @@
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import PersonIcon from '@mui/icons-material/Person';
+import SchoolIcon from '@mui/icons-material/School';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import ClassIcon from '@mui/icons-material/Class';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 const NAVIGATION = [
     {
       segment: "students",
       title: "Student",
-      icon: <InboxIcon />,
+      icon: <PersonIcon />,
       children: [  
         {
           segment: "addStudent",
@@ -28,7 +36,7 @@ const NAVIGATION = [
     {
       segment: "teacher",
       title: "Teacher",
-      icon: <InboxIcon />,
+      icon: <PersonIcon />,
       children: [
         {
           segment: "addTeacher",
@@ -53,7 +61,7 @@ const NAVIGATION = [
     {
       segment: "school",
       title: "School",
-      icon: <InboxIcon />,
+      icon: <SchoolIcon />,
       children: [
         {
           segment: "registration",
@@ -66,7 +74,7 @@ const NAVIGATION = [
     {
       segment: "syllabus",
       title: "Syllabus",
-      icon: <InboxIcon />,
+      icon: < MenuBookIcon/>,
       children: [
         {
           segment: "syllabusForm",
@@ -85,7 +93,7 @@ const NAVIGATION = [
     {
       segment: "subject",
       title: "Subject",
-      icon: <InboxIcon />,
+      icon: <LibraryBooksIcon/>,
       children: [
         {
           segment: "addSubject",
@@ -104,7 +112,7 @@ const NAVIGATION = [
     {
       segment: "class",
       title: "Class",
-      icon: <InboxIcon />,
+      icon: <ClassIcon />,
       children: [
         {
           segment: "classForm",
@@ -123,7 +131,7 @@ const NAVIGATION = [
     {
       segment: "fees",
       title: "Fees",
-      icon: <InboxIcon />,
+      icon: <AddCardIcon />,
       children: [
         {
           segment: "feeStructure",
@@ -148,7 +156,7 @@ const NAVIGATION = [
     {
       segment: "admission",
       title: "Admission ",
-      icon: <InboxIcon />,
+      icon: <PersonAddIcon />,
       children: [
         {
           segment: "admissionForm",
@@ -162,7 +170,7 @@ const NAVIGATION = [
     {
       segment: "examination",
       title: "Examination ",
-      icon: <InboxIcon />,
+      icon: <ContentPasteIcon />,
       children: [
         {
           segment: "examinationForm",
@@ -171,10 +179,10 @@ const NAVIGATION = [
           route: "examinationForm",
         },
         {
-          segment: "examSchedule",
+          segment: "examinationSchedule",
           title: "Exam Schedule",
           icon: <InboxIcon />,
-          route: "examShedule",
+          route: "examinationShedule",
         },
         {
           segment: "examResult",

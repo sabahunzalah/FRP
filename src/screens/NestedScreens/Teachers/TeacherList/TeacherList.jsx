@@ -52,7 +52,7 @@ const TeacherList = () => {
 
   return (
     <div>
-      <h2>Student List</h2>
+      <h2>Teachers List</h2>
    
       <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700, color:"red"}} aria-label="customized table">
@@ -61,7 +61,7 @@ const TeacherList = () => {
             <StyledTableCell>No.</StyledTableCell>
             <StyledTableCell align="center">User Id</StyledTableCell>
             <StyledTableCell align="center">Student Name</StyledTableCell>
-            <StyledTableCell align="center">Father Name</StyledTableCell>
+            <StyledTableCell align="center">Qualification</StyledTableCell>
             <StyledTableCell align="center">Email</StyledTableCell>
             <StyledTableCell align="center">Course Name</StyledTableCell>
           </TableRow>
@@ -74,7 +74,7 @@ const TeacherList = () => {
               </StyledTableCell>
               <StyledTableCell align="center">{e.id}</StyledTableCell>
               <StyledTableCell align="center">{e.userName}</StyledTableCell>
-              <StyledTableCell align="center">{e.fatherName}</StyledTableCell>
+              <StyledTableCell align="center">{e.qualification}</StyledTableCell>
               <StyledTableCell align="center">{e.email}</StyledTableCell>
               <StyledTableCell align="center">{e.course}</StyledTableCell>
             </StyledTableRow>

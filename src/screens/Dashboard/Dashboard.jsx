@@ -14,6 +14,7 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
+  Button,
 } from "@mui/material";
 import { Menu, ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -23,7 +24,6 @@ import CreateStudent from "../NestedScreens/Students/Create-Student/CreateStuden
 import CreateTeacher from "../NestedScreens/Teachers/CreateTeacher/CreateTeacher";
 import TeacherList from "../NestedScreens/Teachers/TeacherList/TeacherList";
 import TeacherAllocation from "../NestedScreens/Teachers/TeacherAllocation/TeacherAllocation";
-import Registration from "../NestedScreens/school/Registration/Registration";
 import AddSubject from "../NestedScreens/Subjects/AddSubject/AddSubject";
 import SubjectList from "../NestedScreens/Subjects/SubjectList/SubjectList";
 import ClassForm from "../NestedScreens/classes/ClassForm/ClassForm";
@@ -34,6 +34,11 @@ import FeeVoucher from "../NestedScreens/fees/FeeVoucher/FeeVoucher";
 import AdmissionForm from "../NestedScreens/Admission/Admission";
 import SchoolRegistration from "../NestedScreens/school/Registration/Registration";
 import NAVIGATION from "./Data";
+import SyllabusForm from "../NestedScreens/Syllabus/SyllabusForm/SyllabusForm";
+import SyllabusList from "../NestedScreens/Syllabus/SyllabusList/SyllabusList";
+import ExaminationForm from "../NestedScreens/Exams/ExaminationForm/ExaminationForm";
+import ExaminationSchedule from "../NestedScreens/Exams/ExaminationSchedule/ExaminationSchedule";
+import ExamResult from "../NestedScreens/Exams/ExamResult/ExamResult";
 
 const drawerWidth = 240;
 export default function LmsDashboard() {
@@ -53,9 +58,13 @@ export default function LmsDashboard() {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const logOut = () =>{
+    localStorage.clear();
+    navigate('/login')
+  }
 
   const drawer = (
-    <Box sx={{ width: drawerWidth,background: "linear-gradient(to right, #007763,#f0f8f5)", height:"auto", paddingTop:"20px",paddingBottom:"30px" }}>
+    <Box sx={{ width: drawerWidth,background: "linear-gradient(to right, #007763,#f0f8f5)", height:"auto", paddingTop:"30px",paddingBottom:"50px" }}>
       <Toolbar />
       <List>
         {NAVIGATION.map((item) => (
@@ -90,7 +99,7 @@ export default function LmsDashboard() {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 ,backgroundColor:" #007763"}}>
-        <Toolbar>
+        <Toolbar sx={{display:"flex",justifyContent:"space-between ", alignItems:"center"}}>
           {/* Menu Button for Mobile */}
           <IconButton color="inherit" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: "none" } }}>
             <Menu />
@@ -98,6 +107,7 @@ export default function LmsDashboard() {
           <Typography variant="h6" noWrap>
             LMS Dashboard
           </Typography>
+          <Button variant="contained" sx={{backgroundColor:"white", color:" #007763", fontWeight:"600"}} onClick={logOut}>Logout</Button>
         </Toolbar>
       </AppBar>
 
@@ -147,6 +157,12 @@ export default function LmsDashboard() {
 //           <Route path="feesSubmission" element={<FeeSubmission />} />
 //           <Route path="feeVoucher" element={<FeeVoucher />} />
 //           <Route path="admissionForm" element={<AdmissionForm />} />
+//           <Route path="syllabusForm" element={<SyllabusForm />} />
+//           <Route path="syllabusList" element={<SyllabusList />} />
+//           <Route path="examinationForm" element={<ExaminationForm />} />
+//           <Route path="examinationShedule" element={<ExaminationSchedule />} />
+//           <Route path="examResult" element={<ExamResult />} />
+//         
 //         </Routes>
       </Box>
     </Box>
