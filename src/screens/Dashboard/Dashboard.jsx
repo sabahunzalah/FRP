@@ -39,12 +39,15 @@ import SyllabusList from "../NestedScreens/Syllabus/SyllabusList/SyllabusList";
 import ExaminationForm from "../NestedScreens/Exams/ExaminationForm/ExaminationForm";
 import ExaminationSchedule from "../NestedScreens/Exams/ExaminationSchedule/ExaminationSchedule";
 import ExamResult from "../NestedScreens/Exams/ExamResult/ExamResult";
+import AdmissionList from "../NestedScreens/Admission/AdmissionList";
+import HomeScreen from "../NestedScreens/HomeScreen/HomeScreen";
 
 const drawerWidth = 240;
 export default function LmsDashboard() {
   const [openSections, setOpenSections] = useState({});
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const isDefaultPage = location.pathname === "/dashboard";
 
   // Toggle function for nested items
   const handleToggle = (segment) => {
@@ -60,7 +63,7 @@ export default function LmsDashboard() {
   };
   const logOut = () =>{
     localStorage.clear();
-    navigate('/login')
+    navigate('/')
   }
 
   const drawer = (
@@ -141,6 +144,9 @@ export default function LmsDashboard() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3, height:"100vh"}}>
         <Toolbar />
+        {isDefaultPage ? (
+        <HomeScreen /> 
+      ) : (
         <Routes>
 //           <Route path="studentList" element={<StudentList />} />
 //           <Route path="addStudent" element={<CreateStudent />} />
@@ -157,6 +163,7 @@ export default function LmsDashboard() {
 //           <Route path="feesSubmission" element={<FeeSubmission />} />
 //           <Route path="feeVoucher" element={<FeeVoucher />} />
 //           <Route path="admissionForm" element={<AdmissionForm />} />
+//           <Route path="admissionList" element={<AdmissionList />} />
 //           <Route path="syllabusForm" element={<SyllabusForm />} />
 //           <Route path="syllabusList" element={<SyllabusList />} />
 //           <Route path="examinationForm" element={<ExaminationForm />} />
@@ -164,6 +171,7 @@ export default function LmsDashboard() {
 //           <Route path="examResult" element={<ExamResult />} />
 //         
 //         </Routes>
+      )}
       </Box>
     </Box>
   );

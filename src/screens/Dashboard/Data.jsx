@@ -164,6 +164,12 @@ const NAVIGATION = [
           icon: <InboxIcon />,
           route: "admissionForm",
         },
+        {
+          segment: "admissionList",
+          title: "Admission List",
+          icon: <InboxIcon />,
+          route: "admissionList",
+        },
         
       ],
     },

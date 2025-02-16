@@ -169,7 +169,7 @@ const CreateStudent = () => {
 
           {/* Course Selection */}
           <Grid item xs={12} sm={6}>
-            <FormLabel> Course you can teach</FormLabel>
+            <FormLabel> Select Course</FormLabel>
             <Select
               fullWidth
               value={selectedCourse} // Ensure value is set properly
