@@ -16,11 +16,12 @@ const App = () => {
         <Route path="/dashboard/*" element={<LmsDashboard />} />
         </Route>
         <Route element={<AuthRoute/>}>
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/Signup" element={<SignUp />} />
 
         </Route>
-        <Route path="/" element={<Home />} />
+       
       
       </Routes>
       <ToastContainer
